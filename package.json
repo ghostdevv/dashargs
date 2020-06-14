@@ -1,0 +1,39 @@
+{
+  "name": "dashargs",
+  "version": "1.0.0",
+  "description": "Simple package for parsing command line style arguments",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "node dev/test.js"
+  },
+  "keywords": [
+    "dashargs",
+    "dash args",
+    "dash",
+    "args",
+    "command",
+    "commandargs",
+    "command args",
+    "commandline",
+    "commandline args",
+    "parser",
+    "parse",
+    "argument",
+    "args",
+    "cli",
+    "cli args"
+  ],
+  "author": "GHOST",
+  "license": "ISC",
+  "homepage": "https://github.com/ghostdevv/dashargs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghostdevv/dashargs"
+  },
+  "bugs": {
+    "url": "https://github.com/ghostdevv/dashargs"
+  },
+  "deprecated": false
+}
