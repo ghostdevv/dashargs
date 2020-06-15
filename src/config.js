@@ -1,8 +1,7 @@
 const dashargs = require("..");
+const util = require('./util.js');
 
 var config = {
-    prefix: '--',
-    full: false,
     unique: true
 };
 
@@ -24,7 +23,7 @@ module.exports.merge = (given = {}) => {
     Object.keys(given).map(key => ({ point: key.toString().toLowerCase(), value: given[key] }))
             .filter(p => points.includes(p.point))
             .forEach(p => {
-                mergedConfig[p.point] = p.value
+                mergedConfig[p.point] = util.typeFix(p.value.toString())
             });
 
     return mergedConfig;
