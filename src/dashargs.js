@@ -13,9 +13,10 @@ module.exports = class DashArgs {
         hold.forEach(x => {
             let key = x.match(/^(?:(-){1}([^-\s])+)/gim)[0].trim().slice(1);
             let val = x.slice(key.length + 1).trim();
-            let par = util.parseKey(key, val);
-            Array.isArray(par) ? parsedArgs = parsedArgs.concat(par) : parsedArgs.push(par)
+            let par = util.parseKey(key, val, config);
+            Array.isArray(par) ? parsedArgs = parsedArgs.concat(par) : !par ? '' : parsedArgs.push(par);
         });
+        
 
         parsedArgs.forEach(x => {
             if (config.unique == true) {

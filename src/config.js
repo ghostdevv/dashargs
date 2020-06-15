@@ -22,10 +22,11 @@ module.exports.merge = (given = {}) => {
     let mergedConfig = Object.assign({}, config);
     const points = Object.keys(mergedConfig);
 
-    Object.keys(given).map(key => ({ point: key.toString().toLowerCase(), value: given[key] }))
+    Object.keys(given).map(key => ({ point: key.toString(), value: given[key] }))
             .filter(p => points.includes(p.point))
             .forEach(p => {
-                mergedConfig[p.point] = util.typeFix(p.value.toString())
+                p.value = util.typeFix(p.value.toString());
+                (typeof p.value == 'boolean') ? mergedConfig[p.point] = p.value : '';
             });
 
     return mergedConfig;

@@ -17,9 +17,10 @@ function typeFix(string) {
 
 };
 
-function parseKey(key, val) {
-    val = !val ? undefined : val;
-    if (!val) return key.split('').map(k => this.parseKey(k, true))
-    if ((typeof val == 'string')) val = (val.match(/^"[^]+"$/gim) || val.match(/^'[^]+'$/gim)) ? val.slice(1, -1) : val;
-    return { key: key, value: (typeof val == 'string') ? this.typeFix(val) : val }
+function parseKey(key, val, config) {
+    val = !val ? undefined : ((typeof val == 'string') && val.match(/(?:^"[^]+"$)|(?:^'[^]+'$)/gim)) ? val.slice(1, -1) : val;
+    if (!val && !config.parseArgs) (config = Object.assign({}, config), config.parseArgs = true);
+    if (!val) return config.parseFlags ? key.split('').map(k => this.parseKey(k, true, config)) : undefined;
+    if (config.parseArgs) return ({ key: key, value: (typeof val == 'string') ? this.typeFix(val) : val });
+    return undefined;
 }
