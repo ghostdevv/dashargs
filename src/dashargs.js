@@ -1,27 +1,28 @@
 const priv = {}
+const util = require('./util.js');
 
 module.exports = class DashArgs {
 
     constructor(string, config = {}) {
 
-        const pattern = new RegExp(`(?:${config.prefix}(\\w+)((=||\\s)?\\w+(\\w||\\B)+)*)`, 'gi');
+        const pattern = /(?:(-){1}([^-\s])+)( )?(?:('(?:\.|[^'])*'|"(?:\.|[^"])*")|((?:\.|[^- ])*)?)/gim
 
-        let hold = string.match(pattern) || [];
-
-        hold = hold.map(x => {
-            let key = x.match(new RegExp(`(?:${config.prefix}(\\w+) ?)`, 'gi'))[0];
-            let args = x.slice(key.length);
-            return ({ key: key.trim().slice(config.prefix.length), args: args == '' ? undefined : args });
-        });
-    
-        if (config.full == true) hold = hold.filter(d => (d.key && d.args));
+        const hold = string.match(pattern) || [];
+        let parsedArgs = [];
 
         hold.forEach(x => {
+            let key = x.match(/^(?:(-){1}([^-\s])+)/gim)[0].trim().slice(1);
+            let val = x.slice(key.length + 1).trim();
+            let par = util.parseKey(key, val);
+            Array.isArray(par) ? parsedArgs = parsedArgs.concat(par) : parsedArgs.push(par)
+        });
+
+        parsedArgs.forEach(x => {
             if (config.unique == true) {
-                if (!this[x.key]) this[x.key] = x.args;
+                if (!this[x.key]) this[x.key] = x.value;
             } else {
                 if (!this[x.key]) this[x.key] = [];
-                if (![undefined].includes(x.args)) this[x.key].push(x.args)
+                if (![undefined].includes(x.value)) this[x.key].push(x.value)
             };
         });
 
