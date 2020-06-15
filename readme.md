@@ -65,10 +65,14 @@ const dash = require('dashargs');
 dash.config({
     
     unique: true,
+    parseFlags: true,
+    parseArgs: true
 
 });
 ```
 `unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
+`parseFlags`: If false then flags will not be parsed by dashargs<br>
+`parseArgs`: If false then args will not be parsed by dashargs<br>
 
 
 ### Methods
@@ -101,7 +105,56 @@ let args2 = dash.parse(exampleCommand, {
 
 console.log(args2); // { new: 'true' }
 ```
+```js
+
+/*
+    CONFIG > parseFlags
+    default: true
+*/
+
+const exampleCommand = 'setup -ab -new thing';
+
+let args = dash.parse(exampleCommand, {
+    parseFlags: true
+});
+
+console.log(args) // { a: true, b: true, new: 'thing' }
+
+let args2 = dash.parse(exampleCommand, {
+    parseFlags: false
+});
+
+console.log(args2) // { new: 'thing' }
+
+```
+```js
+
+/*
+    CONFIG > parseArgs
+    default: true
+*/
+
+const exampleCommand = 'setup -ab -new thing';
+
+let args = dash.parse(exampleCommand, {
+    parseArgs: true
+});
+
+console.log(args) // { a: true, b: true, new: 'thing' }
+
+let args2 = dash.parse(exampleCommand, {
+    parseArgs: false
+});
+
+console.log(args2) // { a: true, b: true }
+
+```
 
 ### Support
 
 You can message me on discord: `GHOST#7524` or create a issue on the [github](https://github.com/ghostdevv/dashargs)
+
+
+
+Finish examples
+Do the param thing
