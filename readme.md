@@ -106,7 +106,6 @@ let args2 = dash.parse(exampleCommand, {
 console.log(args2); // { new: 'true' }
 ```
 ```js
-
 /*
     CONFIG > parseFlags
     default: true
@@ -125,10 +124,8 @@ let args2 = dash.parse(exampleCommand, {
 });
 
 console.log(args2) // { new: 'thing' }
-
 ```
 ```js
-
 /*
     CONFIG > parseArgs
     default: true
@@ -147,7 +144,6 @@ let args2 = dash.parse(exampleCommand, {
 });
 
 console.log(args2) // { a: true, b: true }
-
 ```
 
 ### Support
