@@ -153,8 +153,3 @@ console.log(args2) // { a: true, b: true }
 ### Support
 
 You can message me on discord: `GHOST#7524` or create a issue on the [github](https://github.com/ghostdevv/dashargs)
-
-
-
-Finish examples
-Do the param thing
