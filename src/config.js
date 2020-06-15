@@ -2,7 +2,9 @@ const dashargs = require("..");
 const util = require('./util.js');
 
 var config = {
-    unique: true
+    unique: true,
+    parseFlags: true,
+    parseArgs: true
 };
 
 module.exports.set = (given = {}) => {
