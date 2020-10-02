@@ -4,9 +4,12 @@
   "description": "Simple package for parsing command line style arguments",
   "main": "src/index.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.4.2"
+  },
   "scripts": {
-    "test": "nodemon dev/test.js"
+    "dev": "nodemon dev/devtest.js",
+    "test": "jest"
   },
   "keywords": [
     "dashargs",
