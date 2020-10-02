@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "node dev/test.js"
+    "test": "nodemon dev/test.js"
   },
   "keywords": [
     "dashargs",
