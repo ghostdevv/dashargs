@@ -1,2 +1,4 @@
 dev
 package-lock.json
+tests
+node_modules
