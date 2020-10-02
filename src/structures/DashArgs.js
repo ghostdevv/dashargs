@@ -43,9 +43,9 @@ module.exports = class DashArgs {
     static _parse(string, config) {
         const pattern = /(--[^ \n]+)|(-(?:([^-\s])+)( )?(?:('(?:\.|[^'])*'|"(?:\.|[^"])*")|((?:\.|[^- \n])*)?))/gim;
         let matches = (string.match(pattern) || []).map(m => DashArgs._parseSingle(m, config)).flat();
-        if (!config.parseFlags) matches = matches.filter(m => m.type.match(/flag/gim));
-        if (!config.parseArgs) matches = matches.filter(m => m.type.match(/arg/gim));
-        if (config._typeFix) matches = matches.map(m => ({ ...m, value: DashArgs._typeFix(m.value) }));
+        if (!config.parseFlags) matches = matches.filter(m => !m.type.match(/flag/gim));
+        if (!config.parseArgs) matches = matches.filter(m => !m.type.match(/arg/gim));
+        if (config.typeFix) matches = matches.map(m => ({ ...m, value: DashArgs._typeFix(m.value) }));
         return matches;
     };
     
@@ -61,8 +61,8 @@ module.exports = class DashArgs {
                 return({ key: DashArgs._sanitize(key, 'key'), value: DashArgs._sanitize(value, 'value'), type });
                 break;
             case 'flag':
-                if (DashArgs.anitize(key, 'key').length == 1) return ({ key: DashArgs._sanitize(key, 'key'), value: true, type });
-                return DashArgs._sanitize(key, 'key').split('').map(k => `-${k}`).map(k => DashArgs.parseSingle(k))
+                if (DashArgs._sanitize(key, 'key').length == 1) return ({ key: DashArgs._sanitize(key, 'key'), value: true, type });
+                return DashArgs._sanitize(key, 'key').split('').map(k => `-${k}`).map(k => DashArgs._parseSingle(k))
                 break;
             case 'compound-flag':
                 return({ key: DashArgs._sanitize(key, 'key'), value: true, type })
