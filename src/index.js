@@ -1,5 +1,4 @@
 module.exports = {
-    parse: require('./parse.js'),
-    config: require('./config.js').set,
-    DashArgs: require('./dashargs.js')
+    parse: require('./methods').parse,
+    config: require('./options').Options.defaults
 };
