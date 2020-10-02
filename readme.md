@@ -6,22 +6,22 @@
 
 Simple package for parsing command line style arguments.
 
-### Requirements
+## Requirements
 ```
 NodeJS >= v12.x
 ```
 
-### Install
+# Install
 ```
 npm install dashargs
 ```
 
-### Setup
+# Setup
 ```js
 const dash = require('dashargs');
 ```
 
-### Command Syntax
+# Command Syntax
 ```
 # Arguments:
     Arguments have the structure of this:
@@ -46,7 +46,7 @@ const dash = require('dashargs');
         --abc -> { abc: true }
 ```
 
-### Parse a string
+# Parse a string
 `dash.parse(string, options)`<br>
 The options is an object and has the same points shown below in the config section, these will take priority over the set config, leave blank to use the ones set in the config
 ```js
@@ -67,7 +67,7 @@ args.has('x'); // false
 args.array(); // [ { key: 'title', args: 'New Project' }, { key: 'desc', args: 'Example project' } ]
 ```
 
-### Config
+# Config
 `dash.config(options)`
 ```js
 const dash = require('dashargs');
@@ -86,7 +86,7 @@ dash.config({
 `typeFix`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
 
 
-### Methods
+# Methods
 ```
 dashargs#config
 dashargs#parse
@@ -94,7 +94,7 @@ dashargs#parse
 <parsedString>.array()
 ```
 
-### Examples
+# Examples
 
 ```js
 /*
@@ -177,6 +177,6 @@ let args2 = dash.parse(exampleCommand, {
 console.log(args2) // { new: '1' }
 ```
 
-### Support
+# Support
 
 You can message me on discord: `GHOST#7524` or create a issue on the [github](https://github.com/ghostdevv/dashargs)
