@@ -19,6 +19,6 @@ function parseKey(key, val, config) {
     val = !val ? undefined : ((typeof val == 'string') && val.match(/(?:^"[^]+"$)|(?:^'[^]+'$)/gim)) ? val.slice(1, -1) : val;
     if (!val && !config.parseArgs) (config = Object.assign({}, config), config.parseArgs = true);
     if (!val) return config.parseFlags ? key.split('').map(k => this.parseKey(k, true, config)) : undefined;
-    if (config.parseArgs) return ({ key: key, value: (typeof val == 'string') ? this.typeFix(val) : val });
+    if (config.parseArgs) return ({ key: key, value: (typeof val == 'string') ? config.typeFix ? this.typeFix(val) : val : val });
     return undefined;
 };

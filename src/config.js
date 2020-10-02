@@ -4,7 +4,8 @@ const util = require('./util.js');
 var config = {
     unique: true,
     parseFlags: true,
-    parseArgs: true
+    parseArgs: true,
+    typeFix: true
 };
 
 module.exports.set = (given = {}) => {
