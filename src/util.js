@@ -1,6 +1,6 @@
 module.exports = {
-    typeFix: typeFix,
-    parseKey: parseKey,
+    typeFix,
+    parseKey,
 };
 
 function typeFix(string) {
