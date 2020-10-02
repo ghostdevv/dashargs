@@ -2,10 +2,8 @@ const priv = {}
 const util = require('./util.js');
 
 module.exports = class DashArgs {
-
     constructor(string, config = {}) {
-
-        const pattern = /(?:(-){1}([^-\s])+)( )?(?:('(?:\.|[^'])*'|"(?:\.|[^"])*")|((?:\.|[^- ])*)?)/gim
+        const pattern = /(?:(-){1}([^-\s])+)( )?(?:('(?:\.|[^'])*'|"(?:\.|[^"])*")|((?:\.|[^- ])*)?)/gim;
 
         const hold = string.match(pattern) || [];
         let parsedArgs = [];
@@ -23,25 +21,21 @@ module.exports = class DashArgs {
                 if (!this[x.key]) this[x.key] = x.value;
             } else {
                 if (!this[x.key]) this[x.key] = [];
-                if (![undefined].includes(x.value)) this[x.key].push(x.value)
+                if (![undefined].includes(x.value)) this[x.key].push(x.value);
             };
         });
 
         priv.config = config;
-
     };
 
     has(key) {
-        
         if (!key) throw new Error('dashargs#parse(has) - must provide a key: <parsed-args>.has(\'key\')');
         if ((typeof key != 'string')) throw new SyntaxError('dashargs#parse(has) - given key must be a string');
 
         return !!this.array().filter(x => x.key == key)[0];
-
     };
 
     array() {
         return Object.keys(this).map(key => ({ key: key, args: this[key] }));
     };
-
-}
+};
