@@ -13,7 +13,7 @@ NodeJS >= v12.x
 
 ### Install
 ```
-npm install dashargs --save
+npm install dashargs
 ```
 
 ### Setup
