@@ -28,13 +28,13 @@
   ],
   "author": "GHOST",
   "license": "ISC",
-  "homepage": "https://github.com/ghostdevv/dashargs",
+  "homepage": "https://github.com/ghoststools/dashargs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ghostdevv/dashargs"
+    "url": "git+https://github.com/ghoststools/dashargs"
   },
   "bugs": {
-    "url": "https://github.com/ghostdevv/dashargs"
+    "url": "https://github.com/ghoststools/dashargs"
   },
   "deprecated": false
 }
