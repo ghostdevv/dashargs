@@ -38,6 +38,12 @@ const dash = require('dashargs');
         -abc
         is the same as
         -a -b -c
+
+# Compound Flags:
+    Compound flags are the same as flags but are parsed differently:
+        --a
+    They can be multiple characters long as they aren't split
+        --abc -> { abc: true }
 ```
 
 ### Parse a string
