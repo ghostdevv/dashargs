@@ -1,22 +1,26 @@
-
-
 # DashArgs
-[![](https://img.shields.io/npm/v/dashargs?label=Latest%20Version&style=for-the-badge&logo=npm&color=informational)](https://www.npmjs.com/package/dashargs)
-[![](https://img.shields.io/static/v1?label=Author&message=GHOST&color=informational&style=for-the-badge)](https://ghostdev.xyz)
+[![](https://img.shields.io/npm/v/djs-ticketsystem?label=Latest%20Version&style=for-the-badge&logo=npm&color=informational)](https://www.npmjs.com/package/dashargs)
+[![](https://img.shields.io/static/v1?label=Project%20Creator&message=GHOST&color=informational&style=for-the-badge)](https://ghostdev.xyz)
+[![](https://img.shields.io/static/v1?label=&message=A%20GHOSTs%20Tools%20Project&color=informational&style=for-the-badge)](https://github.com/ghoststools)
 
 Simple package for parsing command line style arguments.
 
-### Install
+## Requirements
 ```
-npm install dashargs --save
+NodeJS >= v12.x
 ```
 
-### Setup
+# Install
+```
+npm install dashargs
+```
+
+# Setup
 ```js
 const dash = require('dashargs');
 ```
 
-### Command Syntax
+# Command Syntax
 ```
 # Arguments:
     Arguments have the structure of this:
@@ -33,9 +37,15 @@ const dash = require('dashargs');
         -abc
         is the same as
         -a -b -c
+
+# Compound Flags:
+    Compound flags are the same as flags but are parsed differently:
+        --a
+    They can be multiple characters long as they aren't split
+        --abc -> { abc: true }
 ```
 
-### Parse a string
+# Parse a string
 `dash.parse(string, options)`<br>
 The options is an object and has the same points shown below in the config section, these will take priority over the set config, leave blank to use the ones set in the config
 ```js
@@ -53,37 +63,37 @@ args // { title: 'New Project', desc: 'Example project' }
 args.has('title'); // true
 args.has('x'); // false
 
-args.array(); // [ { key: 'title', args: 'New Project' }, { key: 'desc', args: 'Example project' } ]
+args.array(); // [ { key: 'title', value: 'New Project' }, { key: 'desc', value: 'Example project' } ]
 ```
 
-### Config
+# Config
 `dash.config(options)`
 ```js
 const dash = require('dashargs');
 
 // Default values shown below; these will be the config options used if not changed
 dash.config({
-    
     unique: true,
     parseFlags: true,
-    parseArgs: true
-
+    parseArgs: true,
+    typeFix: true
 });
 ```
 `unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
 `parseFlags`: If false then flags will not be parsed by dashargs<br>
 `parseArgs`: If false then args will not be parsed by dashargs<br>
+`typeFix`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
 
 
-### Methods
+# Methods
 ```
-dashargs#config
-dashargs#parse
+config
+parse
 <parsedString>.has(key)
 <parsedString>.array()
 ```
 
-### Examples
+# Examples
 
 ```js
 /*
@@ -111,13 +121,13 @@ console.log(args2); // { new: 'true' }
     default: true
 */
 
-const exampleCommand = 'setup -ab -new thing';
+const exampleCommand = 'setup -ab -new thing --dd';
 
 let args = dash.parse(exampleCommand, {
     parseFlags: true
 });
 
-console.log(args) // { a: true, b: true, new: 'thing' }
+console.log(args) // { a: true, b: true, new: 'thing', dd: true }
 
 let args2 = dash.parse(exampleCommand, {
     parseFlags: false
@@ -145,7 +155,29 @@ let args2 = dash.parse(exampleCommand, {
 
 console.log(args2) // { a: true, b: true }
 ```
+```js
+/*
+    CONFIG > typeFix
+    default: true
+*/
 
-### Support
+const exampleCommand = '-new 1';
 
-You can message me on discord: `GHOST#7524` or create a issue on the [github](https://github.com/ghostdevv/dashargs)
+let args = dash.parse(exampleCommand, {
+    typeFix: true
+});
+
+console.log(args) // { new: 1 }
+
+let args2 = dash.parse(exampleCommand, {
+    typeFix: false
+});
+
+console.log(args2) // { new: '1' }
+```
+
+# Support
+
+You can message me on discord: `GHOST#7524`<br>
+Join the [discord](https://discord.gg/r2JQfuH)<br>
+Create a issue on the [github](https://github.com/ghoststools/djs-ticketsystem)
