@@ -6,6 +6,11 @@
 
 Simple package for parsing command line style arguments.
 
+### Requirements
+```
+NodeJS >= v12.x
+```
+
 ### Install
 ```
 npm install dashargs --save
