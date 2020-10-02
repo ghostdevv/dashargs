@@ -62,7 +62,7 @@ args // { title: 'New Project', desc: 'Example project' }
 args.has('title'); // true
 args.has('x'); // false
 
-args.array(); // [ { key: 'title', args: 'New Project' }, { key: 'desc', args: 'Example project' } ]
+args.array(); // [ { key: 'title', value: 'New Project' }, { key: 'desc', value: 'Example project' } ]
 ```
 
 # Config
@@ -86,8 +86,8 @@ dash.config({
 
 # Methods
 ```
-dashargs#config
-dashargs#parse
+config
+parse
 <parsedString>.has(key)
 <parsedString>.array()
 ```
@@ -120,13 +120,13 @@ console.log(args2); // { new: 'true' }
     default: true
 */
 
-const exampleCommand = 'setup -ab -new thing';
+const exampleCommand = 'setup -ab -new thing --dd';
 
 let args = dash.parse(exampleCommand, {
     parseFlags: true
 });
 
-console.log(args) // { a: true, b: true, new: 'thing' }
+console.log(args) // { a: true, b: true, new: 'thing', dd: true }
 
 let args2 = dash.parse(exampleCommand, {
     parseFlags: false
