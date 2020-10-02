@@ -3,7 +3,7 @@ const util = require('./util.js');
 
 module.exports = class DashArgs {
     constructor(string, config = {}) {
-        const pattern = /(?:(-){1}([^-\s])+)( )?(?:('(?:\.|[^'])*'|"(?:\.|[^"])*")|((?:\.|[^- ])*)?)/gim;
+        const pattern = /(?:(-){1}([^-\s])+)( )?(?:('(?:\.|[^'])*'|"(?:\.|[^"])*")|((?:\.|[^- \n])*)?)/gim;
 
         const hold = string.match(pattern) || [];
         let parsedArgs = [];
