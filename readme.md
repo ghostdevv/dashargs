@@ -63,11 +63,9 @@ const dash = require('dashargs');
 
 // Default values shown below; these will be the config options used if not changed
 dash.config({
-    
     unique: true,
     parseFlags: true,
     parseArgs: true
-
 });
 ```
 `unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
