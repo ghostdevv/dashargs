@@ -1,6 +1,6 @@
 {
   "name": "dashargs",
-  "version": "3.0.0",
+  "version": "4.0.0-dev",
   "description": "Simple package for parsing command line style arguments",
   "main": "src/index.js",
   "dependencies": {},
