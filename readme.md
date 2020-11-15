@@ -84,11 +84,28 @@ dash.config({
 `parseArgs`: If false then args will not be parsed by dashargs<br>
 `typeFix`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
 
+# Strip
+`dash.strip(string, options)`
+```js
+const statement = 'Hello -ab world, I --c am -b a a test -d "h"!';
+
+const parsed = dash.strip(statement, {
+    removeWhitespace: true,
+    removeFlags: true,
+    removeArgs: true
+});
+
+console.log(parsed) // Hello I am a test!
+```
+`removeWhitespace`: Remove whitespaces<br>
+`removeFlags`: If false then flags will be ignored<br>
+`removeArgs`: If false then args will be ignored<br>
 
 # Methods
 ```
 config
 parse
+strip
 <parsedString>.has(key)
 <parsedString>.array()
 ```
