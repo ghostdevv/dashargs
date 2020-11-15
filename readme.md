@@ -179,5 +179,5 @@ console.log(args2) // { new: '1' }
 # Support
 
 You can message me on discord: `GHOST#7524`<br>
-Join the [discord](https://discord.gg/r2JQfuH)<br>
+Join the [discord](https://discord.gg/2Vd4wAjJnm)<br>
 Create a issue on the [github](https://github.com/ghoststools/djs-ticketsystem)
