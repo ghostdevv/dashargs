@@ -25,7 +25,7 @@ module.exports = class DashArgs {
     };
 
     array() {
-        return priv._parsed.map(({ key, value }) => ({ key, value }));
+        return priv._parsed.map(({ key, value, raw }) => ({ key, value, raw }));
     };
 
     static _typeFix(item = '') {
@@ -52,20 +52,21 @@ module.exports = class DashArgs {
     static _parseSingle(string) {
         const { key, value } = DashArgs._getKeyVal(string);
         const { type } = DashArgs._identify(string);
-    
+        const raw = string;
+
         switch(type) {
             case 'arg':
-                return({ key: DashArgs._sanitize(key, 'key'), value, type });
+                return({ key: DashArgs._sanitize(key, 'key'), value, type, raw });
                 break;
             case 'compound-arg':
-                return({ key: DashArgs._sanitize(key, 'key'), value: DashArgs._sanitize(value, 'value'), type });
+                return({ key: DashArgs._sanitize(key, 'key'), value: DashArgs._sanitize(value, 'value'), type, raw });
                 break;
             case 'flag':
-                if (DashArgs._sanitize(key, 'key').length == 1) return ({ key: DashArgs._sanitize(key, 'key'), value: true, type });
+                if (DashArgs._sanitize(key, 'key').length == 1) return ({ key: DashArgs._sanitize(key, 'key'), value: true, type, raw });
                 return DashArgs._sanitize(key, 'key').split('').map(k => `-${k}`).map(k => DashArgs._parseSingle(k))
                 break;
             case 'compound-flag':
-                return({ key: DashArgs._sanitize(key, 'key'), value: true, type })
+                return({ key: DashArgs._sanitize(key, 'key'), value: true, type, raw })
                 break;
             default:
                 return undefined;
