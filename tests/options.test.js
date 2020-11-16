@@ -10,12 +10,6 @@ test('checks options are managed correctly', () => {
     expect(b).not.toEqual(a);
 });
 
-// do options test
-// parseFlags
-// parseArgs
-// unique
-// typeFix
-
 test('checks that parseFlags is working correctly', () => {
     const statement = '-test 1 -aab --db';
 
