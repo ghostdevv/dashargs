@@ -6,6 +6,6 @@ dash.config({
 
 const args = dash.parse('-abc --d');
 
-test('args parse correctly', () => {
+test('flags parse correctly', () => {
     expect(args).toEqual({ a: true, b: true, c: true, d: true });
 });
