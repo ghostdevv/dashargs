@@ -1,10 +1,11 @@
-const priv = {};
-
 module.exports = class DashArgs {
-    constructor(string, config = {}) {
-        priv._parsed = DashArgs._parse(string, config);
 
-        priv._parsed.forEach(({ key, value }) => {
+    #parsed;
+
+    constructor(string, config = {}) {
+        this.#parsed = DashArgs._parse(string, config);
+
+        this.#parsed.forEach(({ key, value }) => {
             if (config.unique) {
                 this[key] = value;
             } else {
@@ -25,7 +26,7 @@ module.exports = class DashArgs {
     };
 
     array() {
-        return priv._parsed.map(({ key, value, raw }) => ({ key, value, raw }));
+        return this.#parsed.map(({ key, value, raw }) => ({ key, value, raw }));
     };
 
     static _typeFix(item = '') {
