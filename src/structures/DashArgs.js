@@ -1,5 +1,4 @@
 module.exports = class DashArgs {
-
     #parsed;
 
     constructor(string, config = {}) {
