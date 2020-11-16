@@ -4,7 +4,7 @@ module.exports = (string = '', { removeWhitespace, removeFlags, removeArgs } = {
     if ((typeof string != 'string')) throw new TypeError('Expected type string dashargs#strip');
 
     const args = parse(string, {
-        typeFix: false,
+        typeCoerce: false,
         unique: false,
         parseArgs: removeArgs,
         parseFlags: removeFlags

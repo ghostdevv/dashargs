@@ -2,7 +2,7 @@ let defaultOptions = {
     unique: true,
     parseFlags: true,
     parseArgs: true,
-    typeFix: false
+    typeCoerce: false
 };
 
 module.exports = class Options {
@@ -10,7 +10,7 @@ module.exports = class Options {
         this.unique = defaultOptions.unique;
         this.parseFlags = defaultOptions.parseFlags;
         this.parseArgs = defaultOptions.parseArgs,
-        this.typeFix = defaultOptions.typeFix;
+        this.typeCoerce = defaultOptions.typeCoerce;
     };
 
     static defaults(opt = {}) {

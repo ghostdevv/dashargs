@@ -1,7 +1,7 @@
 const dash = require('../');
 
 dash.config({
-    typeFix: false,
+    typeCoerce: false,
 });
 
 const args = dash.parse('-a 1 -b "1" -c "1 1"');

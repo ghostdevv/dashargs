@@ -1,7 +1,7 @@
 const dash = require('../');
 
 dash.config({
-    typeFix: false,
+    typeCoerce: false,
 });
 
 const args = dash.parse('-abc --d');

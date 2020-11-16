@@ -28,7 +28,7 @@ module.exports = class DashArgs {
         return this.#parsed.map(({ key, value, raw }) => ({ key, value, raw }));
     };
 
-    static _typeFix(item = '') {
+    static _typeCoerce(item = '') {
         if (typeof item != 'string') return item;
     
         item = item.trim();
@@ -45,7 +45,7 @@ module.exports = class DashArgs {
         let matches = (string.match(pattern) || []).map(m => DashArgs._parseSingle(m, config)).flat();
         if (!config.parseFlags) matches = matches.filter(m => !m.type.match(/flag/gim));
         if (!config.parseArgs) matches = matches.filter(m => !m.type.match(/arg/gim));
-        if (config.typeFix) matches = matches.map(m => ({ ...m, value: DashArgs._typeFix(m.value) }));
+        if (config.typeCoerce) matches = matches.map(m => ({ ...m, value: DashArgs._typeCoerce(m.value) }));
         return matches;
     };
     

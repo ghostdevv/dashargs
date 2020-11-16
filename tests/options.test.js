@@ -16,14 +16,14 @@ test('checks that parseFlags is working correctly', () => {
     const testOne = dash.parse(statement, {
         parseArgs: true,
         parseFlags: true,
-        typeFix: false,
+        typeCoerce: false,
         unique: true,
     });
 
     const testTwo = dash.parse(statement, {
         parseArgs: true,
         parseFlags: false,
-        typeFix: false,
+        typeCoerce: false,
         unique: true,
     });
 
@@ -37,14 +37,14 @@ test('checks that parseArgs is working correctly', () => {
     const testOne = dash.parse(statement, {
         parseArgs: true,
         parseFlags: true,
-        typeFix: false,
+        typeCoerce: false,
         unique: true,
     });
 
     const testTwo = dash.parse(statement, {
         parseArgs: false,
         parseFlags: true,
-        typeFix: false,
+        typeCoerce: false,
         unique: true,
     });
 
@@ -57,14 +57,14 @@ test('checks that unique is working correctly', () => {
 
     const testOne = dash.parse(statement, {
         unique: true,
-        typeFix: false,
+        typeCoerce: false,
         parseArgs: true,
         parseFlags: true
     });
 
     const testTwo = dash.parse(statement, {
         unique: false,
-        typeFix: false,
+        typeCoerce: false,
         parseArgs: true,
         parseFlags: true
     });
@@ -73,19 +73,19 @@ test('checks that unique is working correctly', () => {
     expect(testTwo).toEqual({ test: ["1"], a: [true, true], b: [true], db: [true] });
 });
 
-test('checks that typeFix is working correctly', () => {
+test('checks that typeCoerce is working correctly', () => {
     const statement = '-test 1 -aab --db';
 
     const testOne = dash.parse(statement, {
         unique: true,
-        typeFix: false,
+        typeCoerce: false,
         parseArgs: true,
         parseFlags: true
     });
 
     const testTwo = dash.parse(statement, {
         unique: true,
-        typeFix: true,
+        typeCoerce: true,
         parseArgs: true,
         parseFlags: true
     });

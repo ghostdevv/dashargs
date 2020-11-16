@@ -76,13 +76,13 @@ dash.config({
     unique: true,
     parseFlags: true,
     parseArgs: true,
-    typeFix: false
+    typeCoerce: false
 });
 ```
 `unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
 `parseFlags`: If false then flags will not be parsed by dashargs<br>
 `parseArgs`: If false then args will not be parsed by dashargs<br>
-`typeFix`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
+`typeCoerce`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
 
 # Strip
 `dash.strip(string, options)`
@@ -174,20 +174,20 @@ console.log(args2) // { a: true, b: true }
 ```
 ```js
 /*
-    CONFIG > typeFix
+    CONFIG > typeCoerce
     default: true
 */
 
 const exampleCommand = '-new 1';
 
 let args = dash.parse(exampleCommand, {
-    typeFix: true
+    typeCoerce: true
 });
 
 console.log(args) // { new: 1 }
 
 let args2 = dash.parse(exampleCommand, {
-    typeFix: false
+    typeCoerce: false
 });
 
 console.log(args2) // { new: '1' }
