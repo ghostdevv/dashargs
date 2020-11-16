@@ -181,4 +181,4 @@ console.log(args2) // { new: '1' }
 
 You can message me on discord: `GHOST#7524`<br>
 Join the [discord](https://discord.gg/r2JQfuH)<br>
-Create a issue on the [github](https://github.com/ghoststools/dashargs)
+Create a issue on the [github](https://github.com/ghoststools/djs-ticketsystem)
