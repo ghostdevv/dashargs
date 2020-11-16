@@ -76,7 +76,7 @@ dash.config({
     unique: true,
     parseFlags: true,
     parseArgs: true,
-    typeFix: true
+    typeFix: false
 });
 ```
 `unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>

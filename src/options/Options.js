@@ -2,7 +2,7 @@ let defaultOptions = {
     unique: true,
     parseFlags: true,
     parseArgs: true,
-    typeFix: true
+    typeFix: false
 };
 
 module.exports = class Options {
