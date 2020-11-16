@@ -1,7 +1,6 @@
 # DashArgs
 [![](https://img.shields.io/npm/v/dashargs?label=Latest%20Version&style=for-the-badge&logo=npm&color=informational)](https://www.npmjs.com/package/dashargs)
 [![](https://img.shields.io/static/v1?label=Project%20Creator&message=GHOST&color=informational&style=for-the-badge)](https://ghostdev.xyz)
-[![](https://img.shields.io/github/workflow/status/ghoststools/dashargs/CI/master?style=for-the-badge)](https://github.com/ghoststools/dashargs)
 [![](https://img.shields.io/static/v1?label=&message=A%20GHOSTs%20Tools%20Project&color=informational&style=for-the-badge)](https://github.com/ghoststools)
 
 Simple package for parsing command line style arguments.
