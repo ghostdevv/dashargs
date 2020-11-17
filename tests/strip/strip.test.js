@@ -1,4 +1,4 @@
-const dash = require('../');
+const dash = require('../../');
 
 test('checks that strip is working correctly with removeWhitespace', () => {
     const statement = 'Hello -ab world, I --c am -b a a test -d "h"!';
@@ -9,7 +9,14 @@ test('checks that strip is working correctly with removeWhitespace', () => {
         removeArgs: true
     });
 
+    const testTwo = dash.strip(statement, {
+        removeWhitespace: false,
+        removeFlags: true,
+        removeArgs: true
+    });
+
     expect(testOne).toEqual('Hello I am a test!');
+    expect(testTwo).toEqual('Hello  I  am  a test !')
 });
 
 test('checks that strip is working correctly with removeArgs set to false', () => {

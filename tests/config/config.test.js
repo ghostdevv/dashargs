@@ -1,5 +1,5 @@
-const { Options } = require('../src/options');
-const dash = require('../');
+const { Options } = require('../../src/options');
+const dash = require('../../');
 
 test('checks options are managed correctly', () => {
     const a = new Options();
@@ -92,4 +92,35 @@ test('checks that typeCoerce is working correctly', () => {
 
     expect(testOne).toEqual({ test: "1", a: true, b: true, db: true });
     expect(testTwo).toEqual({ test: 1, a: true, b: true, db: true });
+});
+
+test('checks that prefix is working correctly', () => {
+    const statement = '-test 1 -aab --db';
+
+    const testOne = dash.parse(statement, {
+        unique: true,
+        typeCoerce: false,
+        parseArgs: true,
+        parseFlags: true,
+    });
+
+    const testTwo = dash.parse(statement, {
+        unique: true,
+        typeCoerce: false,
+        parseArgs: true,
+        parseFlags: true,
+        prefix: '-'
+    });
+
+    const testThree = dash.parse(statement, {
+        unique: true,
+        typeCoerce: false,
+        parseArgs: true,
+        parseFlags: true,
+        prefix: '!'
+    });
+
+    expect(testOne).toEqual({ test: "1", a: true, b: true, db: true });
+    expect(testTwo).toEqual(testOne);
+    expect(testThree).toEqual({ });
 });
