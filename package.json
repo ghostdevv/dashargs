@@ -39,6 +39,8 @@
   "bugs": {
     "url": "https://github.com/ghoststools/dashargs"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "deprecated": false
 }
