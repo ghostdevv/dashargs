@@ -3,7 +3,7 @@ const Parser = require('./Parser.js');
 module.exports = class DashArgs {
     #parsed;
 
-    constructor(string= '', config = {}) {
+    constructor(string = '', config = {}) {
         this.#parsed = new Parser(string, config).parse();
 
         this.#parsed.forEach(({ key, value }) => {
