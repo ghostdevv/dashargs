@@ -6,17 +6,10 @@ module.exports = class DashArgs {
     constructor(string = '', config = {}) {
         this.#parsed = new Parser(string, config).parse();
 
-        this.#parsed.forEach(({ key, value }) => {
-            if (config.unique) {
-                this[key] = value;
-            } else {
-                if (!this[key] || !Array.isArray(this[key])) {
-                    this[key] = [value];
-                } else {
-                    this[key].push(value);
-                };
-            };
-        });
+        for (const { key, value } of this.#parsed) {
+            if (config.unique) this[key] = value;
+            else this[key] = [...(this[key] ? this[key] : ''), value];
+        };
     };
 
     has(key) {
