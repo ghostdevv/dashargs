@@ -72,7 +72,7 @@ args.array(); // [ { key: 'title', value: 'New Project' }, { key: 'desc', value:
 ```js
 const dash = require('dashargs');
 
-// Default values shown below; these will be the config options used if not changed
+// Default values shown below, these will be the config options used if not changed
 dash.config({
     unique: true,
     parseFlags: true,
