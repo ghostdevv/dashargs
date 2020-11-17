@@ -1,4 +1,4 @@
-let defaultOptions = {
+const defaultOptions = {
     unique: true,
     parseFlags: true,
     parseArgs: true,
