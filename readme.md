@@ -104,14 +104,47 @@ console.log(parsed) // Hello I am a test!
 `removeFlags`: If false then flags will be ignored<br>
 `removeArgs`: If false then args will be ignored<br>
 
-# Methods
-```
-config
-parse
-strip
-<parsedString>.has(key)
-<parsedString>.array()
-```
+# Methods on parsed args
+There are a few methods that can be done on the result from `dash.parse()` (The DashArgs class)<br>
+- ## Has
+    `dash.parse(string, options).has(key)`
+    ```js
+    const statement = '-hello world';
+
+    const parsed = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true
+    });
+
+    console.log(parsed.has('hello')) // true
+    ```
+- ## Get
+    `dash.parse(string, options).get(key)`
+    ```js
+    const statement = '-hello world';
+
+    const parsed = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true
+    });
+
+    console.log(parsed.get('hello')) // world
+    ```
+- ## Array
+    `dash.parse(string, options).array()`
+    ```js
+    const statement = '-hello world';
+
+    const parsed = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true
+    });
+
+    console.log(parsed.array()) // [{ key: 'hello', value: 'world', raw: '-hello world' }]
+    ```
 
 # Examples
 
