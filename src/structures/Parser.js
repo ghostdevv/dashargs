@@ -11,8 +11,8 @@ module.exports = class Parser {
     };
 
     parse() {
-        const pattern = DashRegex.standardRegex;
-        let matches = (this.#string.match(pattern) || []).map(m => Parser.parseSingle(m, this.#config)).flat();
+        const regexPattern = new DashRegex(this.#config.prefix).get();
+        let matches = (this.#string.match(regexPattern) || []).map(m => Parser.parseSingle(m, this.#config.prefix)).flat();
         if (!this.#config.parseFlags) matches = matches.filter(m => !m.type.match(/flag/gim));
         if (!this.#config.parseArgs) matches = matches.filter(m => !m.type.match(/arg/gim));
         if (this.#config.typeCoerce) matches = matches.map(m => ({ ...m, value: typeCoerce(m.value) }));
