@@ -19,7 +19,7 @@ test('checks that args are parsing correctly', () => {
 // test('checks that quote escaping works correctly for "', () => {
 //     const statement = `-a 'b\'c' -d 'e\\'g'`;
 
-    const testOne = dash.parse(statement);
+//     const testOne = dash.parse(statement);
 
-    expect(testOne).toEqual({ });
-});
+//     expect(testOne).toEqual({ });
+// });
