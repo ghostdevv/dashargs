@@ -77,13 +77,15 @@ dash.config({
     unique: true,
     parseFlags: true,
     parseArgs: true,
-    typeCoerce: false
+    typeCoerce: false,
+    prefix: '-'
 });
 ```
 `unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
 `parseFlags`: If false then flags will not be parsed by dashargs<br>
 `parseArgs`: If false then args will not be parsed by dashargs<br>
 `typeCoerce`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
+`prefix`: You are able to change the prefix from the default of `-` but it is __not recommened__ as you could break the regex that powers dashargs using prefixes such as `"`
 
 # Strip
 `dash.strip(string, options)`
