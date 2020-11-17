@@ -11,6 +11,9 @@
     "dev": "nodemon dev/devtest.js",
     "test": "jest"
   },
+  "jest": {
+    "verbose": true
+  },
   "keywords": [
     "dashargs",
     "dash args",
