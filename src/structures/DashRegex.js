@@ -12,7 +12,7 @@ module.exports = class DashRegex {
     };
 
     static get patternString() {
-        return `(--[^ \\n]+)|(-(?:([^-\\s])+)( )?(?:('(?:\\.|[^'])*'|"(?:\\.|[^"])*")|((?:\\.|[^- \\n])*)?))`;
+        return `(--[^ \\n]+)|(-(?:([^-\\s])+)( )?(?:('(?:[^'])*'|"(?:[^"])*")|((?:[^- \\n])*)?))`;
     };
 
     static get keyIdentifierPatternString() {
