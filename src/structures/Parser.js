@@ -19,24 +19,27 @@ module.exports = class Parser {
         return matches;
     };
     
-    static parseSingle(string) {
-        const { key, value } = getKeyVal(string);
-        const { type } = identify(string);
+    static parseSingle(string, prefix) {
+        const keyVal = getKeyVal(string, prefix);
+        const { type } = identify(string, prefix);
         const raw = string;
+
+        const key = sanitize(keyVal.key, 'key', prefix);
+        const value = sanitize(keyVal.value, 'value', prefix);
 
         switch(type) {
             case 'arg':
-                return({ key: sanitize(key, 'key'), value, type, raw });
+                return({ key, value, type, raw });
                 break;
             case 'compound-arg':
-                return({ key: sanitize(key, 'key'), value: sanitize(value, 'value'), type, raw });
+                return({ key, value, type, raw });
                 break;
             case 'flag':
-                if (sanitize(key, 'key').length == 1) return ({ key: sanitize(key, 'key'), value: true, type, raw });
-                return sanitize(key, 'key').split('').map(k => `-${k}`).map(k => Parser.parseSingle(k))
+                if (key.length == 1) return ({ key, value: true, type, raw });
+                return key.split('').map(k => `${prefix}${k}`).map(k => Parser.parseSingle(k, prefix))
                 break;
             case 'compound-flag':
-                return({ key: sanitize(key, 'key'), value: true, type, raw })
+                return({ key: sanitize(key, 'key', prefix), value: true, type, raw })
                 break;
             default:
                 return undefined;
