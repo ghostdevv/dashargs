@@ -23,7 +23,7 @@ module.exports = class DashArgs {
         if (!key) throw new Error('dashargs#parse(has) - must provide a key: <parsed-args>.has(\'key\')');
         if ((typeof key != 'string')) throw new SyntaxError('dashargs#parse(has) - given key must be a string');
 
-        return !!this.array().filter(x => x.key == key)[0];
+        return !!this[key];
     };
 
     array() {
