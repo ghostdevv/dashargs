@@ -146,6 +146,8 @@ There are a few methods that can be done on the result from `dash.parse()` (The 
     console.log(parsed.array()) // [{ key: 'hello', value: 'world', raw: '-hello world' }]
     ```
 
+# Quote Escaping
+In arguments it's possible to escape quotes, for example `-a "b \" c"`. Due to JavaScript seeing the `\"` as escaped, dashargs doesn't see the `\` just `"` therefore you must escape the `\`, for example `-a "b \\" c"`
 # Examples
 
 ```js
