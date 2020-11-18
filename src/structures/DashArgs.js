@@ -2,11 +2,14 @@ const Parser = require('./Parser.js');
 const { Options } = require('../options');
 
 module.exports = class DashArgs {
+    #parser;
     #parsed;
 
     constructor(string = '', config = {}) {
         config = Object.assign(new Options(), config);
-        this.#parsed = new Parser(string, config).parse();
+
+        this.#parser = new Parser(string, config);
+        this.#parsed = this.#parser.parse();
 
         for (const { key, value } of this.#parsed) {
             if (config.unique) this[key] = value;
