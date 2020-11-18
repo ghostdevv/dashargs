@@ -10,6 +10,10 @@ module.exports = class Parser {
         this.#config = config;
     };
 
+    get string() {
+        return this.#string;
+    };
+
     parse() {
         const regexPattern = new DashRegex(this.#config.prefix).get();
         let matches = (this.#string.match(regexPattern) || []).map(m => Parser.parseSingle(m, this.#config.prefix)).flat();
