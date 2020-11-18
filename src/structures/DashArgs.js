@@ -21,6 +21,10 @@ module.exports = class DashArgs {
         return this.#parser.string;
     };
 
+    get config() {
+        return this.#parser.config;
+    };
+
     has(key) {
         if (!key) throw new SyntaxError('dashargs#parse(has) - must provide a key: <parsed-args>.has(\'key\')');
         if ((typeof key != 'string')) throw new TypeError('dashargs#parse(has) - given key must be a string');
