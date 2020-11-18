@@ -8,18 +8,18 @@ test('checks that args are parsing correctly', () => {
     expect(testOne).toEqual({ a: 'b', c: 'd', e: 'f' });
 });
 
-// test('checks that quote escaping works correctly for "', () => {
-//     const statement = `-a "b\"c" -d "e\\"g"`;
+test('checks that quote escaping works correctly for "', () => {
+    const statement = `-a "b\"c" -d "e\\"g"`;
 
-//     const testOne = dash.parse(statement);
+    const testOne = dash.parse(statement);
 
-//     expect(testOne).toEqual({ });
-// });
+    expect(testOne).toEqual({ a: 'b', d: 'e\\"g' });
+});
 
-// test('checks that quote escaping works correctly for "', () => {
-//     const statement = `-a 'b\'c' -d 'e\\'g'`;
+test('checks that quote escaping works correctly for "', () => {
+    const statement = `-a 'b\'c' -d 'e\\'g'`;
 
-//     const testOne = dash.parse(statement);
+    const testOne = dash.parse(statement);
 
-//     expect(testOne).toEqual({ });
-// });
+    expect(testOne).toEqual({ a: 'b', d: "e\\'g" });
+});
