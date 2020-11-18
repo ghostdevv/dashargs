@@ -56,19 +56,11 @@ let command = 'setup -title "New Project" -desc "Example project"' // Example co
 const args = dash.parse(command);
 
 args // { title: 'New Project', desc: 'Example project' }
-
-/*
-    Parsed String Methods:
-*/
-
-args.has('title'); // true
-args.has('x'); // false
-
-args.array(); // [ { key: 'title', value: 'New Project' }, { key: 'desc', value: 'Example project' } ]
 ```
 
-# Config
-`dash.config(options)`
+# Global Config
+`dash.config(options)`<br>
+You are able to set the default config for parsing args
 ```js
 const dash = require('dashargs');
 
@@ -146,93 +138,13 @@ There are a few methods that can be done on the result from `dash.parse()` (The 
     console.log(parsed.array()) // [{ key: 'hello', value: 'world', raw: '-hello world' }]
     ```
 
-# Quote Escaping
-In arguments it's possible to escape quotes, for example `-a "b \" c"`. Due to JavaScript seeing the `\"` as escaped, dashargs doesn't see the `\` just `"` therefore you must escape the `\`, for example `-a "b \\" c"`
-# Examples
+# FAQ
+- ## Quote Escaping
+    In arguments it's possible to escape quotes, for example `-a "b \" c"`. Due to JavaScript seeing the `\"` as escaped, dashargs doesn't see the `\` just `"` therefore you must escape the `\`, for example `-a "b \\" c"`
+- ## Examples
+    You are able to view examples in the examples directory of the project which can be found [here](https://github.com/ghoststools/dashargs/tree/master/examples)
 
-```js
-/*
-    CONFIG > unique
-    default: true
-*/
-
-const exampleCommand = 'setup -new true -new false';
-
-let args = dash.parse(exampleCommand, {
-    unique: false
-});
-
-console.log(args) // { new: ['true', 'false'] }
-
-let args2 = dash.parse(exampleCommand, {
-    unique: true
-});
-
-console.log(args2); // { new: 'true' }
-```
-```js
-/*
-    CONFIG > parseFlags
-    default: true
-*/
-
-const exampleCommand = 'setup -ab -new thing --dd';
-
-let args = dash.parse(exampleCommand, {
-    parseFlags: true
-});
-
-console.log(args) // { a: true, b: true, new: 'thing', dd: true }
-
-let args2 = dash.parse(exampleCommand, {
-    parseFlags: false
-});
-
-console.log(args2) // { new: 'thing' }
-```
-```js
-/*
-    CONFIG > parseArgs
-    default: true
-*/
-
-const exampleCommand = 'setup -ab -new thing';
-
-let args = dash.parse(exampleCommand, {
-    parseArgs: true
-});
-
-console.log(args) // { a: true, b: true, new: 'thing' }
-
-let args2 = dash.parse(exampleCommand, {
-    parseArgs: false
-});
-
-console.log(args2) // { a: true, b: true }
-```
-```js
-/*
-    CONFIG > typeCoerce
-    default: true
-*/
-
-const exampleCommand = '-new 1';
-
-let args = dash.parse(exampleCommand, {
-    typeCoerce: true
-});
-
-console.log(args) // { new: 1 }
-
-let args2 = dash.parse(exampleCommand, {
-    typeCoerce: false
-});
-
-console.log(args2) // { new: '1' }
-```
-
-# Support
-
-You can message me on discord: `GHOST#7524`<br>
-Join the [discord](https://discord.gg/2Vd4wAjJnm)<br>
-Create a issue on the [github](https://github.com/ghoststools/dashargs)
+- ## Support
+    - Message me on discord: `GHOST#7524`<br>
+    - Join the [discord](https://discord.gg/2Vd4wAjJnm)<br>
+    - Create a issue on the [github](https://github.com/ghoststools/dashargs)
