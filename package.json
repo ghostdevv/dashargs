@@ -33,7 +33,7 @@
     "argsv"
   ],
   "author": "GHOST",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/ghoststools/dashargs",
   "repository": {
     "type": "git",
