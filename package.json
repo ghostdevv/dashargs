@@ -4,6 +4,7 @@
   "description": "Simple package for parsing command line style arguments",
   "main": "./src/index.cjs",
   "module": "./src/index.mjs",
+  "types": "./dashargs.d.ts",
   "exports": {
     ".": [
       {
