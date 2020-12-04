@@ -2,8 +2,17 @@
   "name": "dashargs",
   "version": "4.0.0-dev",
   "description": "Simple package for parsing command line style arguments",
-  "main": "src/index.js",
-  "dependencies": {},
+  "main": "./src/index.cjs",
+  "module": "./src/index.mjs",
+  "exports": {
+    ".": [
+      {
+        "require": "./src/index.cjs",
+        "import": "./src/index.mjs"
+      },
+      "./src/index.cjs"
+    ]
+  },
   "devDependencies": {
     "jest": "^26.4.2"
   },
