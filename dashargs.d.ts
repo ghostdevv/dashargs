@@ -4,4 +4,12 @@ declare module 'dashargs' {
         removeFlags: boolean,
         removeArgs: boolean
     }) : string;
+
+    export function config(options: {
+        unique: boolean,
+        parseFlags: boolean,
+        parseArgs: boolean,
+        typeCoerce: boolean,
+        prefix: string,
+    }): void;
 }
