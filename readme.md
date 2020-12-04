@@ -17,8 +17,17 @@ npm install dashargs
 ```
 
 # Setup
+Node JS
 ```js
-const dash = require('dashargs');
+const dash = require('dashargs'); // Recommended
+// or
+import dash from 'dashargs';
+```
+Typescript
+```ts
+import { parse, config, strip } from 'dashargs'; // Recommended
+// or
+import * as dash from 'dashargs';
 ```
 
 # Command Syntax
