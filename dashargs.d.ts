@@ -3,7 +3,7 @@ declare module 'dashargs' {
         removeWhitespace: boolean,
         removeFlags: boolean,
         removeArgs: boolean
-    }) : string;
+    }): string;
 
     export function config(options: {
         unique: boolean,
