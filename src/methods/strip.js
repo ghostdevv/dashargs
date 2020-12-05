@@ -1,13 +1,14 @@
 const parse = require('./parse.js');
 
-module.exports = (string = '', { removeWhitespace, removeFlags, removeArgs } = { removeWhitespace: true, removeFlags: true, removeArgs: true }) => {
+module.exports = (string = '', { removeWhitespace, removeFlags, removeArgs, prefix } = { removeWhitespace: true, removeFlags: true, removeArgs: true }) => {
     if ((typeof string != 'string')) throw new TypeError('Expected type string dashargs#strip');
 
     const args = parse(string, {
         typeCoerce: false,
         unique: false,
         parseArgs: removeArgs,
-        parseFlags: removeFlags
+        parseFlags: removeFlags,
+        prefix: !prefix ? '-' : prefix
     })
     .array()
     .map(x => (removeWhitespace ? ' ' : '') + x.raw.trim());
