@@ -100,6 +100,7 @@ console.log(parsed) // Hello I am a test!
 `removeWhitespace`: Remove whitespaces<br>
 `removeFlags`: If false then flags will be ignored<br>
 `removeArgs`: If false then args will be ignored<br>
+`prefix`: You are able to give a custom prefix here if needed
 
 # Methods on parsed args
 There are a few methods that can be done on the result from `dash.parse()` (The DashArgs class)<br>
