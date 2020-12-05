@@ -19,15 +19,11 @@ npm install dashargs
 # Setup
 Node JS
 ```js
-const dash = require('dashargs'); // Recommended
-// or
-import dash from 'dashargs';
+const dash = require('dashargs');
 ```
 Typescript
 ```ts
-import { parse, config, strip } from 'dashargs'; // Recommended
-// or
-import * as dash from 'dashargs';
+import { parse, config, strip } from 'dashargs';
 ```
 
 # Command Syntax
@@ -152,6 +148,16 @@ There are a few methods that can be done on the result from `dash.parse()` (The 
     In arguments it's possible to escape quotes, for example `-a "b \" c"`. Due to JavaScript seeing the `\"` as escaped, dashargs doesn't see the `\` just `"` therefore you must escape the `\`, for example `-a "b \\" c"`
 - ## Examples
     You are able to view examples in the examples directory of the project which can be found [here](https://github.com/ghoststools/dashargs/tree/master/examples)
+
+- ## Other import methods
+    You are able to use a es import for node such as:
+    ```js
+    import dash from 'dashargs';
+    ```
+    and for typescript:
+    ```js
+    import * as dash from 'dashargs';
+    ```
 
 - ## Support
     - Message me on discord: `GHOST#7524`<br>
