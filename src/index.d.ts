@@ -2,7 +2,8 @@ declare module 'dashargs' {
     export function strip(string: string, options?: {
         removeWhitespace: boolean,
         removeFlags: boolean,
-        removeArgs: boolean
+        removeArgs: boolean,
+        prefix: string
     }): string;
 
     export function config(options: {
