@@ -25,6 +25,7 @@ Typescript
 ```ts
 import { parse, config, strip } from 'dashargs';
 ```
+For es imports such as the TypeScript import it's recommened you only import the methods you need
 
 # Command Syntax
 ```
