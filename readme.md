@@ -75,14 +75,12 @@ dash.config({
     parseFlags: true,
     parseArgs: true,
     typeCoerce: false,
-    prefix: '-'
 });
 ```
 `unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
 `parseFlags`: If false then flags will not be parsed by dashargs<br>
 `parseArgs`: If false then args will not be parsed by dashargs<br>
-`typeCoerce`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
-`prefix`: You are able to change the prefix from the default of `-` but it is __not recommened__ as you could break the regex that powers dashargs using prefixes such as `"`
+`typeCoerce`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1
 
 # Strip
 `dash.strip(string, options)`
@@ -99,8 +97,7 @@ console.log(parsed) // Hello I am a test!
 ```
 `removeWhitespace`: Remove whitespaces<br>
 `removeFlags`: If false then flags will be ignored<br>
-`removeArgs`: If false then args will be ignored<br>
-`prefix`: You are able to give a custom prefix here if needed
+`removeArgs`: If false then args will be ignored
 
 # Methods on parsed args
 There are a few methods that can be done on the result from `dash.parse()` (The DashArgs class)<br>
@@ -147,6 +144,10 @@ There are a few methods that can be done on the result from `dash.parse()` (The 
 # FAQ
 - ## Quote Escaping
     In arguments it's possible to escape quotes, for example `-a "b \" c"`. Due to JavaScript seeing the `\"` as escaped, dashargs doesn't see the `\` just `"` therefore you must escape the `\`, for example `-a "b \\" c"`
+
+- ## Custom Prefixes
+    Custom prefixes are possible with dashargs, on all methods, just pass in a prefix option with your desired prefix, however, you must be careful when doing this as certain prefixes such as `"` will not work correctly and create unexpected behaviors, therefore they are not recommened.
+
 - ## Examples
     You are able to view examples in the examples directory of the project which can be found [here](https://github.com/ghoststools/dashargs/tree/master/examples)
 
