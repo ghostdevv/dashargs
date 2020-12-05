@@ -42,3 +42,26 @@ test('checks that strip is working correctly with removeFlags set to false', () 
 
     expect(testOne).toEqual('Hello World -a --b');
 });
+
+test('checks that strip is working correctly with different prefixes', () => {
+    const statement = 'Hello World -a --b -h "a"';
+
+    const testOne = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true,
+        prefix: '-'
+    });
+
+    const statement2 = 'Hello World !a !!b !h "a"';
+
+    const testTwo = dash.strip(statement2, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true,
+        prefix: '!'
+    });
+
+    expect(testOne).toEqual(testTwo);
+
+});
