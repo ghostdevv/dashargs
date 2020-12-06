@@ -24,6 +24,9 @@
   "jest": {
     "verbose": true
   },
+  "engines": {
+    "node": ">=12"
+  },
   "keywords": [
     "dashargs",
     "dash args",
