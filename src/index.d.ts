@@ -14,7 +14,7 @@ declare module 'dashargs' {
         prefix?: string,
     }): void;
 
-    export class DashArgs {
+    class DashArgs {
         constructor(string: string, config?: {
             unique?: boolean,
             parseFlags?: boolean,
