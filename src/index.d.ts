@@ -1,26 +1,26 @@
 declare module 'dashargs' {
     export function strip(string: string, options?: {
-        removeWhitespace: boolean,
-        removeFlags: boolean,
-        removeArgs: boolean,
-        prefix: string
+        removeWhitespace?: boolean,
+        removeFlags?: boolean,
+        removeArgs?: boolean,
+        prefix?: string
     }): string;
 
     export function config(options: {
-        unique: boolean,
-        parseFlags: boolean,
-        parseArgs: boolean,
-        typeCoerce: boolean,
-        prefix: string,
+        unique?: boolean,
+        parseFlags?: boolean,
+        parseArgs?: boolean,
+        typeCoerce?: boolean,
+        prefix?: string,
     }): void;
 
     export class DashArgs {
         constructor(string: string, config?: {
-            unique: boolean,
-            parseFlags: boolean,
-            parseArgs: boolean,
-            typeCoerce: boolean,
-            prefix: string,
+            unique?: boolean,
+            parseFlags?: boolean,
+            parseArgs?: boolean,
+            typeCoerce?: boolean,
+            prefix?: string,
         });
         get string(): string;
         get config(): object;
@@ -30,10 +30,10 @@ declare module 'dashargs' {
     }
 
     export function parse(string: string, options?: {
-        unique: boolean,
-        parseFlags: boolean,
-        parseArgs: boolean,
-        typeCoerce: boolean,
-        prefix: string,
+        unique?: boolean,
+        parseFlags?: boolean,
+        parseArgs?: boolean,
+        typeCoerce?: boolean,
+        prefix?: string,
     }): DashArgs
 }
