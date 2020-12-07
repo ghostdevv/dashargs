@@ -35,5 +35,5 @@ declare module 'dashargs' {
         parseArgs?: boolean,
         typeCoerce?: boolean,
         prefix?: string,
-    }): DashArgs
+    }): DashArgs;
 }
