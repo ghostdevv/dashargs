@@ -3,3 +3,4 @@ package-lock.json
 tests
 node_modules
 .github
+.prettierrc
