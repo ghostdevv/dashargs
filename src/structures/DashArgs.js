@@ -9,6 +9,11 @@ module.exports = class DashArgs {
         this.#parsed = this.#parser.parse();
 
         for (const { key, value } of this.#parsed) {
+            if (['string', 'config'].includes(key))
+                throw new Error(
+                    `${key} is a reserved key, you are unable to use it`,
+                );
+
             if (config.unique) this[key] = value;
             else this[key] = [...(this[key] ? this[key] : ''), value];
         }
