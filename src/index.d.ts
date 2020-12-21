@@ -10,11 +10,11 @@ declare module 'dashargs' {
     ): string;
 
     export function config(options: {
-        unique?: boolean;
-        parseFlags?: boolean;
-        parseArgs?: boolean;
-        typeCoerce?: boolean;
-        prefix?: string;
+            unique?: boolean;
+            parseFlags?: boolean;
+            parseArgs?: boolean;
+            typeCoerce?: boolean;
+            prefix?: string;
     }): void;
 
     class DashArgs {
