@@ -5,5 +5,5 @@ import strip from './methods/strip.js';
 export default {
     parse,
     config: config.defaults,
-    strip
+    strip,
 };
