@@ -1,7 +1,7 @@
 const dash = require('../../');
 
 test('check that argv is working correctly', () => {
-    process.argv = [...process.argv, '--dev', '-hello world'];
+    process.argv = [...process.argv, '--dev', '-hello', 'world'];
 
     const args = dash.argv();
 
