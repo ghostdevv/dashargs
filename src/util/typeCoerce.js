@@ -1,3 +1,7 @@
+/**
+ * Try to change a string to it's actual type
+ * @param {string} item
+ */
 module.exports = (item = '') => {
     if (typeof item != 'string') return item;
 
@@ -9,16 +13,15 @@ module.exports = (item = '') => {
 
     const object = tryJSON(item);
     if (object) return object;
-    
+
     return item;
 };
 
 function tryJSON(string) {
     try {
         const object = JSON.parse(string);
-        return object;  
-    }
-    catch {
+        return object;
+    } catch {
         return undefined;
-    };
-};
+    }
+}

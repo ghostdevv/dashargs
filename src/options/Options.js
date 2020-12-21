@@ -31,7 +31,13 @@ const typeMap = {
     },
 };
 
+/**
+ * Options manager
+ */
 module.exports = class Options {
+    /**
+     * @param {string} [type] The type of options that should be created
+     */
     constructor(type) {
         const entries = Object.entries(type ? options[type] : options);
         for (const [key, value] of entries) {
@@ -39,6 +45,12 @@ module.exports = class Options {
         }
     }
 
+    /**
+     *
+     * @param {Object} opt The options that should be overwriten
+     * @param {ParseOptions} [opt.parse] Parse options
+     * @param {StripOptions} [opt.strip] Strip options
+     */
     static defaults(opt = {}) {
         for (const [key] of Object.entries(opt)) {
             const item = typeMap[key],
