@@ -10,11 +10,19 @@ declare module 'dashargs' {
     ): string;
 
     export function config(options: {
+        parse?: {
             unique?: boolean;
             parseFlags?: boolean;
             parseArgs?: boolean;
             typeCoerce?: boolean;
             prefix?: string;
+        },
+        strip?: {
+            removeWhitespace?: boolean;
+            removeFlags?: boolean;
+            removeArgs?: boolean;
+            prefix?: string;
+        }
     }): void;
 
     class DashArgs {
