@@ -1,13 +1,10 @@
 const Parser = require('./Parser.js');
-const { Options } = require('../options');
 
 module.exports = class DashArgs {
     #parser;
     #parsed;
 
     constructor(string = '', config = {}) {
-        config = Object.assign(new Options(), config);
-
         this.#parser = new Parser(string, config);
         this.#parsed = this.#parser.parse();
 
