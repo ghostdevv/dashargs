@@ -1,4 +1,0 @@
-module.exports = {
-    parse: require('./methods').parse,
-    config: require('./options').Options.defaults
-};

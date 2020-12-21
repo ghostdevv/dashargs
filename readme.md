@@ -1,6 +1,7 @@
 # DashArgs
 [![](https://img.shields.io/npm/v/dashargs?label=Latest%20Version&style=for-the-badge&logo=npm&color=informational)](https://www.npmjs.com/package/dashargs)
 [![](https://img.shields.io/static/v1?label=Project%20Creator&message=GHOST&color=informational&style=for-the-badge)](https://ghostdev.xyz)
+[![](https://img.shields.io/github/workflow/status/ghoststools/dashargs/CI/master?style=for-the-badge)](https://github.com/ghoststools/dashargs)
 [![](https://img.shields.io/static/v1?label=&message=A%20GHOSTs%20Tools%20Project&color=informational&style=for-the-badge)](https://github.com/ghoststools)
 
 Simple package for parsing command line style arguments.
@@ -16,9 +17,15 @@ npm install dashargs
 ```
 
 # Setup
+Node JS
 ```js
 const dash = require('dashargs');
 ```
+Typescript
+```ts
+import { parse, config, strip } from 'dashargs';
+```
+For es imports such as the TypeScript import it's recommened you only import the methods you need
 
 # Command Syntax
 ```
@@ -55,129 +62,117 @@ let command = 'setup -title "New Project" -desc "Example project"' // Example co
 const args = dash.parse(command);
 
 args // { title: 'New Project', desc: 'Example project' }
-
-/*
-    Parsed String Methods:
-*/
-
-args.has('title'); // true
-args.has('x'); // false
-
-args.array(); // [ { key: 'title', value: 'New Project' }, { key: 'desc', value: 'Example project' } ]
 ```
 
-# Config
-`dash.config(options)`
+# Argv shortcut
+If you want to parse the arguments on `process.argv` dashargs includes a shortcut method to do this: `dash.argv(options)`
 ```js
 const dash = require('dashargs');
 
-// Default values shown below; these will be the config options used if not changed
+// Let's say the command was node . --dev
+const args = dash.argv();
+
+args // { dev: true }
+```
+
+# Global Config
+`dash.config(options)`<br>
+You are able to set the default config used for every dashargs method. You just provide a object with the key being the method name, for exmaple:
+```js
+const dash = require('dashargs');
+
 dash.config({
-    unique: true,
-    parseFlags: true,
-    parseArgs: true,
-    typeFix: true
+    parse: {
+        unique: true,
+        typeCoerce: false,
+    },
+    strip: {
+        removeWhitespace: true,
+    },
 });
 ```
-`unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
-`parseFlags`: If false then flags will not be parsed by dashargs<br>
-`parseArgs`: If false then args will not be parsed by dashargs<br>
-`typeFix`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1<br>
+The above will update the config used by the methods you choose, if you don't provide a option or a method then it will remain the default ones. The options you can provide above can be found by the methods in other points of the documentaion
 
-
-# Methods
-```
-config
-parse
-<parsedString>.has(key)
-<parsedString>.array()
-```
-
-# Examples
-
+# Strip
+`dash.strip(string, options)`
 ```js
-/*
-    CONFIG > unique
-    default: true
-*/
+const statement = 'Hello -ab world, I --c am -b a a test -d "h"!';
 
-const exampleCommand = 'setup -new true -new false';
-
-let args = dash.parse(exampleCommand, {
-    unique: false
+const parsed = dash.strip(statement, {
+    removeWhitespace: true,
+    removeFlags: true,
+    removeArgs: true
 });
 
-console.log(args) // { new: ['true', 'false'] }
-
-let args2 = dash.parse(exampleCommand, {
-    unique: true
-});
-
-console.log(args2); // { new: 'true' }
+console.log(parsed) // Hello I am a test!
 ```
-```js
-/*
-    CONFIG > parseFlags
-    default: true
-*/
+`removeWhitespace`: Remove whitespaces<br>
+`removeFlags`: If false then flags will be ignored<br>
+`removeArgs`: If false then args will be ignored
 
-const exampleCommand = 'setup -ab -new thing --dd';
+# Methods on parsed args
+There are a few methods that can be done on the result from `dash.parse()` (The DashArgs class)<br>
+- ## Has
+    `dash.parse(string, options).has(key)`
+    ```js
+    const statement = '-hello world';
 
-let args = dash.parse(exampleCommand, {
-    parseFlags: true
-});
+    const parsed = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true
+    });
 
-console.log(args) // { a: true, b: true, new: 'thing', dd: true }
+    console.log(parsed.has('hello')) // true
+    ```
+- ## Get
+    `dash.parse(string, options).get(key)`
+    ```js
+    const statement = '-hello world';
 
-let args2 = dash.parse(exampleCommand, {
-    parseFlags: false
-});
+    const parsed = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true
+    });
 
-console.log(args2) // { new: 'thing' }
-```
-```js
-/*
-    CONFIG > parseArgs
-    default: true
-*/
+    console.log(parsed.get('hello')) // world
+    ```
+- ## Array
+    `dash.parse(string, options).array()`
+    ```js
+    const statement = '-hello world';
 
-const exampleCommand = 'setup -ab -new thing';
+    const parsed = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true
+    });
 
-let args = dash.parse(exampleCommand, {
-    parseArgs: true
-});
+    console.log(parsed.array()) // [{ key: 'hello', value: 'world', raw: '-hello world' }]
+    ```
 
-console.log(args) // { a: true, b: true, new: 'thing' }
+# FAQ
+- ## Quote Escaping
+    In arguments it's possible to escape quotes, for example `-a "b \" c"`. Due to JavaScript seeing the `\"` as escaped, dashargs doesn't see the `\` just `"` therefore you must escape the `\`, for example `-a "b \\" c"`
 
-let args2 = dash.parse(exampleCommand, {
-    parseArgs: false
-});
+- ## Custom Prefixes
+    Custom prefixes are possible with dashargs, on all methods, just pass in a prefix option with your desired prefix, however, you must be careful when doing this as certain prefixes such as `"` will not work correctly and create unexpected behaviors, therefore they are not recommened.
 
-console.log(args2) // { a: true, b: true }
-```
-```js
-/*
-    CONFIG > typeFix
-    default: true
-*/
+- ## Examples
+    You are able to view examples in the examples directory of the project which can be found [here](https://github.com/ghoststools/dashargs/tree/master/examples)
 
-const exampleCommand = '-new 1';
+- ## Other import methods
+    You are able to use a es import for node such as:
+    ```js
+    import dash from 'dashargs';
+    ```
+    and for typescript:
+    ```js
+    import * as dash from 'dashargs';
+    ```
 
-let args = dash.parse(exampleCommand, {
-    typeFix: true
-});
-
-console.log(args) // { new: 1 }
-
-let args2 = dash.parse(exampleCommand, {
-    typeFix: false
-});
-
-console.log(args2) // { new: '1' }
-```
-
-# Support
-
-You can message me on discord: `GHOST#7524`<br>
-Join the [discord](https://discord.gg/r2JQfuH)<br>
-Create a issue on the [github](https://github.com/ghoststools/djs-ticketsystem)
+- ## Support
+    - Message me on discord: `GHOST#7524`<br>
+    - Join the [discord](https://discord.gg/2Vd4wAjJnm)<br>
+    - Create a issue on the [github](https://github.com/ghoststools/dashargs)

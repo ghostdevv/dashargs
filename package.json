@@ -1,15 +1,33 @@
 {
   "name": "dashargs",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Simple package for parsing command line style arguments",
-  "main": "src/index.js",
-  "dependencies": {},
+  "main": "./src/index.cjs",
+  "module": "./src/index.mjs",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": [
+      {
+        "require": "./src/index.cjs",
+        "import": "./src/index.mjs"
+      },
+      "./src/index.cjs"
+    ]
+  },
   "devDependencies": {
-    "jest": "^26.4.2"
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1"
   },
   "scripts": {
-    "dev": "nodemon dev/devtest.js",
-    "test": "jest"
+    "dev": "nodemon dev/index.js",
+    "test": "jest",
+    "format": "prettier --plugin-search-dir=. --write \"src/*\""
+  },
+  "jest": {
+    "verbose": true
+  },
+  "engines": {
+    "node": ">=12"
   },
   "keywords": [
     "dashargs",
@@ -30,7 +48,7 @@
     "argsv"
   ],
   "author": "GHOST",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/ghoststools/dashargs",
   "repository": {
     "type": "git",
@@ -38,6 +56,9 @@
   },
   "bugs": {
     "url": "https://github.com/ghoststools/dashargs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "deprecated": false
 }
