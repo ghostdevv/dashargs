@@ -1,6 +1,8 @@
+const { parse, strip, argv } = require('./methods');
+
 module.exports = {
-    parse: require('./methods').parse,
+    parse,
+    strip,
+    argv,
     config: require('./options').Options.defaults,
-    strip: require('./methods').strip,
-    argv: require('./methods').argv,
 };
