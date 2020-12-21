@@ -17,14 +17,14 @@ test('checks that config is returning correctly with custom config', () => {
         parseArgs: false,
         unique: true,
         typeCoerce: true,
-        prefix: '!'
+        prefix: '!',
     }).config;
-    
+
     expect(testOne).toEqual({
         parseFlags: true,
         parseArgs: false,
         unique: true,
         typeCoerce: true,
-        prefix: '!'
+        prefix: '!',
     });
 });

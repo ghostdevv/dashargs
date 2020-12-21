@@ -39,8 +39,8 @@ test('checks that parseFlags is working correctly', () => {
         unique: true,
     });
 
-    expect(testOne).toEqual({ test: "1", a: true, b: true, db: true });
-    expect(testTwo).toEqual({ test: "1" });
+    expect(testOne).toEqual({ test: '1', a: true, b: true, db: true });
+    expect(testTwo).toEqual({ test: '1' });
 });
 
 test('checks that parseArgs is working correctly', () => {
@@ -60,7 +60,7 @@ test('checks that parseArgs is working correctly', () => {
         unique: true,
     });
 
-    expect(testOne).toEqual({ test: "1", a: true, b: true, db: true });
+    expect(testOne).toEqual({ test: '1', a: true, b: true, db: true });
     expect(testTwo).toEqual({ a: true, b: true, db: true });
 });
 
@@ -71,18 +71,23 @@ test('checks that unique is working correctly', () => {
         unique: true,
         typeCoerce: false,
         parseArgs: true,
-        parseFlags: true
+        parseFlags: true,
     });
 
     const testTwo = dash.parse(statement, {
         unique: false,
         typeCoerce: false,
         parseArgs: true,
-        parseFlags: true
+        parseFlags: true,
     });
 
-    expect(testOne).toEqual({ test: "1", a: true, b: true, db: true });
-    expect(testTwo).toEqual({ test: ["1"], a: [true, true], b: [true], db: [true] });
+    expect(testOne).toEqual({ test: '1', a: true, b: true, db: true });
+    expect(testTwo).toEqual({
+        test: ['1'],
+        a: [true, true],
+        b: [true],
+        db: [true],
+    });
 });
 
 test('checks that typeCoerce is working correctly', () => {
@@ -92,17 +97,17 @@ test('checks that typeCoerce is working correctly', () => {
         unique: true,
         typeCoerce: false,
         parseArgs: true,
-        parseFlags: true
+        parseFlags: true,
     });
 
     const testTwo = dash.parse(statement, {
         unique: true,
         typeCoerce: true,
         parseArgs: true,
-        parseFlags: true
+        parseFlags: true,
     });
 
-    expect(testOne).toEqual({ test: "1", a: true, b: true, db: true });
+    expect(testOne).toEqual({ test: '1', a: true, b: true, db: true });
     expect(testTwo).toEqual({ test: 1, a: true, b: true, db: true });
 });
 
@@ -121,7 +126,7 @@ test('checks that prefix is working correctly', () => {
         typeCoerce: false,
         parseArgs: true,
         parseFlags: true,
-        prefix: '-'
+        prefix: '-',
     });
 
     const testThree = dash.parse(statement, {
@@ -129,10 +134,10 @@ test('checks that prefix is working correctly', () => {
         typeCoerce: false,
         parseArgs: true,
         parseFlags: true,
-        prefix: '!'
+        prefix: '!',
     });
 
-    expect(testOne).toEqual({ test: "1", a: true, b: true, db: true });
+    expect(testOne).toEqual({ test: '1', a: true, b: true, db: true });
     expect(testTwo).toEqual(testOne);
-    expect(testThree).toEqual({ });
+    expect(testThree).toEqual({});
 });
