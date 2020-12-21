@@ -66,22 +66,21 @@ args // { title: 'New Project', desc: 'Example project' }
 
 # Global Config
 `dash.config(options)`<br>
-You are able to set the default config for parsing args
+You are able to set the default config used for every dashargs method. You just provide a object with the key being the method name, for exmaple:
 ```js
 const dash = require('dashargs');
 
-// Default values shown below, these will be the config options used if not changed
 dash.config({
-    unique: true,
-    parseFlags: true,
-    parseArgs: true,
-    typeCoerce: false,
+    parse: {
+        unique: true,
+        typeCoerce: false,
+    },
+    strip: {
+        removeWhitespace: true,
+    },
 });
 ```
-`unique`: If true then if a arg is given twice e.g. `-x a -x b` only the first will be parsed, the others will be ignored<br>
-`parseFlags`: If false then flags will not be parsed by dashargs<br>
-`parseArgs`: If false then args will not be parsed by dashargs<br>
-`typeCoerce`: If true then it will try to convert values to their "correct" types, e.g the string "1" to the number 1
+The above will update the config used by the methods you choose, if you don't provide a option or a method then it will remain the default ones. The options you can provide above can be found by the methods in other points of the documentaion
 
 # Strip
 `dash.strip(string, options)`
