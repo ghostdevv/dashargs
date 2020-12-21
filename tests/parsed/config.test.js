@@ -5,7 +5,7 @@ test('checks that config is returning correctly with defaults', () => {
     const statement = '-a b -c "d" -e \'f\' -g -hi -j -j';
 
     const testOne = dash.parse(statement).config;
-    
+
     expect(testOne).toEqual(new Options());
 });
 
