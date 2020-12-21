@@ -6,7 +6,7 @@ test('checks that config is returning correctly with defaults', () => {
 
     const testOne = dash.parse(statement).config;
 
-    expect(testOne).toEqual(new Options());
+    expect(testOne).toEqual(new Options('parse'));
 });
 
 test('checks that config is returning correctly with custom config', () => {
