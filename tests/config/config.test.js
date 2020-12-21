@@ -1,27 +1,6 @@
 const { Options } = require('../../src/options');
 const dash = require('../../');
 
-test('check option type checking works', () => {
-    expect(() =>
-        dash.config({
-            parse: {
-                unique: 'abc',
-            },
-        }),
-    ).toThrow(TypeError);
-
-    dash.config({
-        parse: {
-            unique: false,
-        },
-    });
-
-    expect(new Options('parse')).toEqual({
-        ...new Options('parse'),
-        unique: false,
-    });
-});
-
 test('checks that parseFlags is working correctly', () => {
     const statement = '-test 1 -aab --db';
 
