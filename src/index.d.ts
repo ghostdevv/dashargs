@@ -53,4 +53,14 @@ declare module 'dashargs' {
             prefix?: string;
         },
     ): DashArgs;
+
+    export function argv(
+        options?: {
+            unique?: boolean;
+            parseFlags?: boolean;
+            parseArgs?: boolean;
+            typeCoerce?: boolean;
+            prefix?: string;
+        },
+    ): DashArgs;
 }

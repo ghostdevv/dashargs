@@ -64,6 +64,17 @@ const args = dash.parse(command);
 args // { title: 'New Project', desc: 'Example project' }
 ```
 
+# Argv shortcut
+If you want to parse the arguments on `process.argv` dashargs includes a shortcut method to do this: `dash.argv(options)`
+```js
+const dash = require('dashargs');
+
+// Let's say the command was node . --dev
+const args = dash.argv();
+
+args // { dev: true }
+```
+
 # Global Config
 `dash.config(options)`<br>
 You are able to set the default config used for every dashargs method. You just provide a object with the key being the method name, for exmaple:
