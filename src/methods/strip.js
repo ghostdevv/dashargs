@@ -1,6 +1,11 @@
 const { Options } = require('../options');
 const parse = require('./parse.js');
 
+/**
+ *
+ * @param {string} string The strip to strip from
+ * @param {StripOptions} [options] Options for the strip function to use
+ */
 module.exports = (string = '', options = {}) => {
     if (typeof string != 'string')
         throw new TypeError('Expected type string dashargs#strip');

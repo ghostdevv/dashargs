@@ -2,19 +2,24 @@
 
 /*
     A example command that will allow you to input a string and mutate it in multiple ways
+
+    for example:
+    command -input "Hello World" --reverse --caps
 */
 
 const dash = require('dashargs');
 
-const { string, reverse } = dash.argv();
+const { input, reverse, caps, lower } = dash.argv();
 
-if (!string)
+if (!input)
     return console.log(
-        'You must provide a string, for example: -string "hello world"',
+        'You must provide a string, for example: -input "hello world"',
     );
 
-let output = '';
+let output = input;
 
-if (reverse) output = [...string].reverse().join('');
+if (reverse) output = [...output].reverse().join('');
+if (caps) output = output.toUpperCase();
+if (lower) output = output.toLowerCase();
 
 console.log(`The result is: ${output}`);
