@@ -1,5 +1,5 @@
 const { Options } = require('../options');
-const parse = require('./parse.js');
+const { Parser } = require('../structures');
 
 /**
  *
@@ -12,18 +12,20 @@ module.exports = (string = '', options = {}) => {
 
     options = Object.assign(new Options('strip'), options);
 
-    const args = parse(string, {
+    const parser = new Parser(string, {
         typeCoerce: false,
         unique: false,
         parseArgs: options.removeArgs,
         parseFlags: options.removeFlags,
         prefix: options.prefix,
-    })
-        .array()
-        .map((x) => (options.removeWhitespace ? ' ' : '') + x.raw.trim());
+    });
 
-    for (const raw of args) {
-        string = string.replace(raw, '').replace(raw.trim(), '');
+    const parsed = parser
+        .parse()
+        .map(({ raw }) => (options.removeWhitespace ? ' ' : '') + raw.trim());
+
+    for (const item of parsed) {
+        string = string.replace(item, '');
     }
 
     return string;
