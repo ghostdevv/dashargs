@@ -44,17 +44,19 @@ module.exports = class DashArgs {
      * Check if there is a arg/flag with a given key
      * @param {string} key
      */
-    has(key) {
-        if (!key)
+    has(...keys) {
+        if (!keys)
             throw new SyntaxError(
-                "dashargs#parse(has) - must provide a key: <parsed-args>.has('key')",
-            );
-        if (typeof key != 'string')
-            throw new TypeError(
-                'dashargs#parse(has) - given key must be a string',
+                "dashargs#parse(has) - must provide a key or keys: <parsed-args>.has('key')",
             );
 
-        return !!this.get(key);
+        const invalidType = keys.find((k) => typeof k != 'string');
+        if (invalidType)
+            throw new TypeError(
+                'dashargs#parse(has) - given key(s) must be a string',
+            );
+
+        return !!this.#parsed.find(({ key }) => [...keys].includes(key));
     }
 
     /**

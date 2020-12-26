@@ -125,6 +125,18 @@ There are a few methods that can be done on the result from `dash.parse()` (The 
 
     console.log(parsed.has('hello')) // true
     ```
+    ```js
+    // Check if it has any one of the supplied keys
+    const statement = '-a b -c d';
+
+        const parsed = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true
+    });
+
+    console.log(parsed.has('x', 'a')) // true
+    ```
 - ## Get
     `dash.parse(string, options).get(key)`
     ```js
