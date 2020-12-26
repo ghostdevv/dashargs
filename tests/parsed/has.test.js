@@ -30,3 +30,13 @@ test('checks that has works for invalid properties', () => {
     expect(testOne).toEqual(false);
     expect(testTwo).toEqual(false);
 });
+
+test('checks that multiple keys works in has method', () => {
+    const testOne = parsed.has('a', 'c');
+    const testTwo = parsed.has('x', 'a', 'y');
+    const testThree = parsed.has('x', 'y', 'z');
+
+    expect(testOne).toEqual(true);
+    expect(testTwo).toEqual(true);
+    expect(testThree).toEqual(false);
+});
