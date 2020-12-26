@@ -1,6 +1,6 @@
 {
   "name": "dashargs",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Simple package for parsing command line style arguments",
   "main": "./src/index.cjs",
   "module": "./src/index.mjs",
