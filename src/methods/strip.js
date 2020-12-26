@@ -20,13 +20,18 @@ module.exports = (string = '', options = {}) => {
         prefix: options.prefix,
     });
 
-    const parsed = parser
-        .parse()
-        .map(({ raw }) => (options.removeWhitespace ? ' ' : '') + raw.trim());
+    const parsed = parser.parse().map(({ raw }) => raw.trim());
 
     for (const item of parsed) {
-        string = string.replace(item, '');
+        string = string.replace(new RegExp(item, 'gim'), '');
     }
+
+    if (options.removeWhitespace)
+        string = string
+            .split(' ')
+            .filter((x) => x.trim() != '')
+            .map((x) => x.trim())
+            .join(' ');
 
     return string;
 };
