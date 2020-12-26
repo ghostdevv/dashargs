@@ -15,7 +15,7 @@ test('checks that strip is working correctly with removeWhitespace', () => {
         removeArgs: true,
     });
 
-    expect(testOne).toEqual('Hello I am a test!');
+    expect(testOne).toEqual('Hello I am a test !');
     expect(testTwo).toEqual('Hello  I  am  a test !');
 });
 
@@ -63,4 +63,30 @@ test('checks that strip is working correctly with different prefixes', () => {
     });
 
     expect(testOne).toEqual(testTwo);
+});
+
+test('strip case test one', () => {
+    const statement = 'Hello -a world';
+
+    const testOne = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true,
+        prefix: '-',
+    });
+
+    expect(testOne).toEqual('Hello');
+});
+
+test('strip case test two', () => {
+    const statement = '--test case';
+
+    const testOne = dash.strip(statement, {
+        removeWhitespace: true,
+        removeFlags: true,
+        removeArgs: true,
+        prefix: '-',
+    });
+
+    expect(testOne).toEqual('case');
 });
