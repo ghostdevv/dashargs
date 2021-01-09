@@ -5,6 +5,7 @@ const parse = require('./parse.js');
  * @param {ParseOptions} options
  */
 module.exports = (options = {}) => {
+    /* prettier-ignore */
     return parse(
         process.argv
             .slice(2)
