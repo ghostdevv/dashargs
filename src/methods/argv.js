@@ -8,7 +8,7 @@ module.exports = (options = {}) => {
     return parse(
         process.argv
             .slice(2)
-            .map((x) => (x.match(/ /gm) ? `"${x}"` : x))
+            .map((x, i) => (x.match(/ /gm) || !(x.match(/"'/gm) || process.argv.slice(2)[i].startsWith(options.prefix || '-')) ? `"${x}"` : x))
             .join(' '),
         options,
     );
