@@ -1,9 +1,9 @@
-import { defaults } from './options/Options.js';
+import configW from './options/Options.js';
 import parse from './methods/parse.js';
 import strip from './methods/strip.js';
 import argv from './methods/argv.js';
 
-const config = defaults;
+const config = configW.defaults;
 
 export {
     parse,
