@@ -1,7 +1,16 @@
-import config from './options/Options.js';
+import { defaults } from './options/Options.js';
 import parse from './methods/parse.js';
 import strip from './methods/strip.js';
 import argv from './methods/argv.js';
+
+const config = defaults;
+
+export {
+    parse,
+    strip,
+    argv,
+    config
+}
 
 /**
  * DashArgs
@@ -9,7 +18,7 @@ import argv from './methods/argv.js';
  */
 export default {
     parse,
-    config: config.defaults,
+    config,
     strip,
     argv,
 };
