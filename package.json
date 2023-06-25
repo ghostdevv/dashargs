@@ -6,14 +6,12 @@
   "module": "./src/index.mjs",
   "types": "./src/index.d.ts",
   "exports": {
-    ".": [
-      {
-        "require": "./src/index.cjs",
-        "import": "./src/index.mjs",
-        "types": "./src/index.d.ts"
-      },
-      "./src/index.cjs"
-    ]
+    "./package.json": "./package.json",
+    ".": {
+      "require": "./src/index.cjs",
+      "import": "./src/index.mjs",
+      "types": "./src/index.d.ts"
+    }
   },
   "devDependencies": {
     "jest": "^28.1.3",
