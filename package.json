@@ -9,14 +9,15 @@
     ".": [
       {
         "require": "./src/index.cjs",
-        "import": "./src/index.mjs"
+        "import": "./src/index.mjs",
+        "types": "./src/index.d.ts"
       },
       "./src/index.cjs"
     ]
   },
   "devDependencies": {
-    "jest": "^27.2.2",
-    "prettier": "^2.2.1"
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8"
   },
   "scripts": {
     "dev": "nodemon dev/index.js",
